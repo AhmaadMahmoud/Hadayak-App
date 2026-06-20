@@ -11,7 +11,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full bg-[#C20D2C] antialiased">
+<body class="h-full bg-[#C20D2C] font-sans antialiased">
     {{ $slot }}
 
     @stack('scripts')
