@@ -7,9 +7,13 @@
 
     <title>{{ $title ?? config('app.name') }}</title>
 
+    @stack('head')
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full bg-[#C20D2C] antialiased">
     {{ $slot }}
+
+    @stack('scripts')
 </body>
 </html>

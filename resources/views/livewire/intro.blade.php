@@ -1,4 +1,11 @@
 <div class="relative min-h-dvh w-full overflow-hidden bg-[#C20D2C]">
+    @push('head')
+        <meta http-equiv="refresh" content="2; url=/login">
+    @endpush
+
+    {{-- Tap anywhere to skip splash --}}
+    <a href="/login" class="absolute inset-0 z-10" aria-label="متابعة"></a>
+
     {{-- Full-bleed background (extends under notches / safe areas) --}}
     <img
         src="{{ asset('images/intro-bg.png') }}"
