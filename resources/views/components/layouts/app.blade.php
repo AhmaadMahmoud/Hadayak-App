@@ -7,6 +7,7 @@
 
     <title>{{ $title ?? config('app.name') }}</title>
 
+    @fonts
     @stack('head')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
