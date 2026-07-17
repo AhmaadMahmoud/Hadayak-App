@@ -11,39 +11,24 @@
         class="shrink-0 px-6 pt-3"
         style="padding-top: max(0.75rem, env(safe-area-inset-top));"
     >
-        <div class="flex items-start justify-between">
-            {{-- Cart (Figma: top-right) --}}
-            <div class="relative size-10 shrink-0">
-                <div class="absolute inset-0 flex items-center justify-center -rotate-[12.76deg]">
-                    <svg class="size-8" viewBox="0 0 27.1643 28.9999" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M19.4402 1.18764C20.1969 0.681269 21.1349 0.800781 21.6044 1.20916C21.8078 1.38644 22.0066 1.68834 21.797 2.12107C21.3569 3.03412 20.4195 3.62375 19.4102 3.62375H16.5204C16.6563 3.97492 16.7316 4.35611 16.7316 4.75486C16.7316 5.11 16.6716 5.45154 16.5629 5.77043H23.3592C23.8123 4.90949 23.8451 3.92111 23.4413 3.01543L22.6132 1.15648C22.5164 0.941249 22.368 0.740742 22.1663 0.565156C21.4628 -0.0454304 20.1035 -0.283321 18.965 0.477929L15.8441 2.5674C16.0423 2.77244 16.2134 3.00353 16.3505 3.25559L19.4402 1.18764Z" fill="#D81D35"/>
-                        <path d="M10.6031 5.76986C10.4944 5.45098 10.4344 5.10943 10.4344 4.7543C10.4344 4.35555 10.5097 3.97435 10.6456 3.62318H7.75752C6.74818 3.62318 5.81078 3.03299 5.36842 2.11994C5.15885 1.68777 5.35766 1.38588 5.56156 1.20916C5.81418 0.989394 6.20217 0.853456 6.62471 0.853456C6.98777 0.853456 7.37576 0.95371 7.72523 1.18764L10.8144 3.25559C10.9515 3.00297 11.1231 2.77187 11.3208 2.5674L8.19988 0.477929C7.06141 -0.283321 5.70203 -0.0454304 5.00025 0.565156C4.77539 0.760566 4.61566 0.986562 4.52164 1.23012L3.72471 3.01486C3.32029 3.92055 3.35314 4.90893 3.80684 5.76986H10.6031Z" fill="#D81D35"/>
-                        <path d="M11.5247 5.76986H15.6396C15.7914 5.46344 15.8775 5.11849 15.8775 4.7543C15.8775 3.48951 14.8467 2.45865 13.5819 2.45865C12.3171 2.45865 11.2862 3.48951 11.2862 4.7543C11.2868 5.11906 11.3729 5.46344 11.5247 5.76986Z" fill="#D81D35"/>
-                        <path d="M0 8.41951V11.2261C0 12.0694 0.584545 12.7786 1.36902 12.9706H11.9999V6.62287H1.79609C0.806009 6.62287 0 7.42887 0 8.41951Z" fill="#D81D35"/>
-                        <path d="M1.36957 26.6159C1.36957 27.9305 2.43895 28.9999 3.75358 28.9999H12.0005V13.823H1.36957V26.6159Z" fill="#D81D35"/>
-                        <path d="M25.3688 6.62287H15.1661V12.97H25.7953C26.5803 12.778 27.1643 12.0689 27.1643 11.2255V8.41895C27.1649 7.42887 26.3589 6.62287 25.3688 6.62287Z" fill="#D81D35"/>
-                        <path d="M15.1661 28.9999H23.4113C24.7259 28.9999 25.7953 27.9305 25.7953 26.6159V13.823H15.1661V28.9999Z" fill="#D81D35"/>
-                    </svg>
-                </div>
-                <div class="absolute -top-1 -left-1 flex size-[21px] items-center justify-center">
-                    <svg class="absolute inset-0 size-full" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <circle cx="10.5" cy="10.5" r="10.5" fill="#E8D41D"/>
-                    </svg>
-                    <span class="relative text-sm font-bold leading-none text-[#D81D35]">2</span>
-                </div>
-            </div>
-
-            {{-- Location (Figma: top-left) --}}
-            <p class="pt-1 text-xs font-bold text-[#D41D38]">
-                شارع كذا على الخريطة
-            </p>
-        </div>
+        {{-- Delivery location --}}
+        <p class="text-right text-sm font-bold text-[#D81D35]">
+            {{ $location }}
+        </p>
 
         {{-- Search bar --}}
-        <div
-            class="mt-3 h-11 w-full rounded-[17px] bg-[#D9D9D9]"
-            aria-hidden="true"
-        ></div>
+        <div class="mt-3 flex h-11 w-full items-center gap-2 rounded-[20px] bg-[#D9D9D9] px-4">
+            <input
+                type="search"
+                enterkeyhint="search"
+                placeholder="بتدور على ايه؟"
+                class="min-w-0 flex-1 bg-transparent text-right text-sm font-bold text-[#060606] placeholder:text-[#AEAEAE] focus:outline-none [&::-webkit-search-cancel-button]:appearance-none"
+                aria-label="بحث"
+            >
+            <svg class="size-[22px] shrink-0" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8.85433 17.7013C10.8207 17.7013 12.7309 17.0453 14.2822 15.837L20.1349 21.6897C20.5721 22.1119 21.2688 22.0998 21.6911 21.6626C22.103 21.2361 22.103 20.56 21.6911 20.1335L15.8384 14.2808C18.8367 10.4211 18.1385 4.86165 14.2788 1.86332C10.4192 -1.13501 4.85971 -0.436805 1.86138 3.42286C-1.13695 7.28252 -0.438743 12.842 3.42092 15.8403C4.97478 17.0475 6.88664 17.7023 8.85433 17.7013ZM4.15173 4.15029C6.74893 1.55304 10.9598 1.55299 13.5571 4.15019C16.1543 6.74739 16.1544 10.9583 13.5572 13.5555C10.96 16.1528 6.74907 16.1528 4.15183 13.5556C1.55454 10.9772 1.53923 6.78171 4.11751 4.18451C4.1289 4.17307 4.14029 4.16168 4.15173 4.15029Z" fill="#AEAEAE"/>
+            </svg>
+        </div>
     </header>
 
     {{-- Scrollable body --}}
@@ -60,8 +45,8 @@
 
         {{-- Categories --}}
         <section class="mt-6">
-            <h2 class="text-lg font-bold text-[#D41D38]">الأقسام</h2>
-            <div class="mt-3 grid grid-cols-3 gap-x-3 gap-y-3">
+            <h2 class="text-right text-lg font-bold text-[#D41D38]">الأقسام</h2>
+            <div class="mt-3 grid grid-cols-3 gap-3">
                 @foreach ($categories as $category)
                     <x-home.category-card
                         :label="$category['label']"
@@ -73,20 +58,56 @@
 
         {{-- Special services --}}
         <section class="mt-8">
-            <h2 class="text-lg font-bold text-[#D41D38]">خدمات خاصة</h2>
+            <h2 class="text-right text-lg font-bold text-[#D41D38]">خدمات خاصة</h2>
             <div class="-mx-6 mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 @foreach ($services as $service)
-                    <x-home.service-card :label="$service['label']" />
+                    <x-home.service-card
+                        :label="$service['label']"
+                        :image="$service['image']"
+                    />
                 @endforeach
             </div>
         </section>
     </main>
 
-    {{-- Bottom navigation placeholder --}}
+    {{-- Bottom navigation --}}
     <footer
-        class="shrink-0 bg-[#D9D9D9]"
+        class="shrink-0 bg-white shadow-[0px_-2px_12px_0px_rgba(0,0,0,0.18)]"
         style="padding-bottom: env(safe-area-inset-bottom);"
     >
-        <div class="h-14" aria-hidden="true"></div>
+        <nav class="flex h-14 items-center justify-around px-6 text-[#D81D35]">
+            {{-- Home --}}
+            <a href="{{ route('home') }}" wire:navigate class="flex items-center justify-center p-2" aria-label="الرئيسية" aria-current="page">
+                <svg class="size-6" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M19.4606 8.69904C19.4601 8.69858 19.4597 8.69812 19.4592 8.69766L11.3008 0.539551C10.9531 0.19165 10.4907 0 9.99892 0C9.50713 0 9.04479 0.191498 8.69689 0.539398L0.542745 8.69339C0.539999 8.69614 0.537252 8.69904 0.534505 8.70178C-0.179606 9.42001 -0.178385 10.5853 0.538015 11.3017C0.865316 11.6292 1.2976 11.8188 1.75979 11.8387C1.77855 11.8405 1.79748 11.8414 1.81655 11.8414H2.14171V17.8453C2.14171 19.0334 3.10836 20 4.29671 20H7.48854C7.81203 20 8.07448 19.7377 8.07448 19.4141V14.707C8.07448 14.1649 8.51546 13.7239 9.05761 13.7239H10.9402C11.4824 13.7239 11.9234 14.1649 11.9234 14.707V19.4141C11.9234 19.7377 12.1857 20 12.5093 20H15.7011C16.8895 20 17.8561 19.0334 17.8561 17.8453V11.8414H18.1576C18.6493 11.8414 19.1116 11.6499 19.4597 11.302C20.1768 10.5844 20.1771 9.41711 19.4606 8.69904Z" fill="currentColor"/>
+                </svg>
+            </a>
+
+            {{-- Cart / gifts --}}
+            <a href="#" class="relative flex items-center justify-center p-2" aria-label="السلة">
+                <svg class="size-7" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M17.1212 2.61014C17.6542 2.04761 18.4552 1.97052 18.9217 2.22125C19.1238 2.33019 19.3456 2.54342 19.2529 2.94199C19.0592 3.78258 18.392 4.44819 17.5542 4.63788L15.1555 5.181C15.3343 5.44695 15.4685 5.7492 15.5434 6.08018C15.6102 6.37496 15.6245 6.66974 15.5942 6.95488L21.2355 5.67756C21.4498 4.87777 21.2913 4.05119 20.7859 3.37533L19.7491 1.98794C19.6283 1.82748 19.4674 1.68894 19.2671 1.58109C18.5684 1.20649 17.3953 1.26451 16.5934 2.11036L14.3956 4.43128C14.5987 4.56422 14.7841 4.72389 14.9452 4.90734L17.1212 2.61014Z" fill="currentColor"/>
+                    <path d="M10.6472 8.07452C10.497 7.83026 10.383 7.55805 10.3162 7.26327C10.2413 6.93228 10.2322 6.60172 10.279 6.28468L7.88172 6.82748C7.04392 7.01717 6.1549 6.70346 5.61612 6.02872C5.36094 5.70939 5.46922 5.42143 5.60526 5.23643C5.77365 5.00653 6.07015 4.82078 6.42088 4.74136C6.72224 4.67313 7.06313 4.68342 7.39718 4.81191L10.35 5.94783C10.4163 5.71238 10.5153 5.48831 10.641 5.28143L7.65778 4.13361C6.56971 3.7157 5.48607 4.16865 5.01831 4.80736C4.86839 5.01183 4.77828 5.22943 4.74601 5.44927L4.41995 7.08048C4.25448 7.90825 4.46751 8.72248 5.0059 9.35184L10.6472 8.07452Z" fill="currentColor"/>
+                    <path d="M11.4121 7.90133L14.8278 7.12796C14.8962 6.84508 14.9028 6.54258 14.8343 6.24027C14.5966 5.19044 13.5472 4.52851 12.4974 4.76622C11.4476 5.00393 10.7856 6.05334 11.0233 7.10318C11.0924 7.40584 11.2285 7.67551 11.4121 7.90133Z" fill="currentColor"/>
+                    <path d="M2.34404 12.2666L2.87152 14.5962C3.03002 15.2962 3.64849 15.775 4.33573 15.7869L13.1599 13.7889L11.9669 8.52001L3.49721 10.4377C2.6754 10.6238 2.15786 11.4443 2.34404 12.2666Z" fill="currentColor"/>
+                    <path d="M6.90073 27.1132C7.14781 28.2044 8.23643 28.891 9.32764 28.644L16.173 27.094L13.3206 14.4964L4.4964 16.4944L6.90073 27.1132Z" fill="currentColor"/>
+                    <path d="M23.0638 6.00744L14.595 7.92497L15.7879 13.1934L24.6107 11.1957C25.2262 10.8888 25.5777 10.1904 25.4192 9.4904L24.8917 7.16082C24.7061 6.3389 23.8856 5.82136 23.0638 6.00744Z" fill="currentColor"/>
+                    <path d="M18.8006 26.499L25.6446 24.9494C26.7358 24.7023 27.4224 23.6137 27.1753 22.5225L24.771 11.9037L15.9482 13.9014L18.8006 26.499Z" fill="currentColor"/>
+                </svg>
+                @if ($cartCount > 0)
+                    <span class="absolute -top-0.5 right-1 flex size-[18px] items-center justify-center rounded-full bg-[#E8D41D] text-[11px] font-bold leading-none text-[#D81D35]">
+                        {{ $cartCount }}
+                    </span>
+                @endif
+            </a>
+
+            {{-- Profile --}}
+            <a href="#" class="flex items-center justify-center p-2" aria-label="حسابي">
+                <svg class="h-6 w-[22px]" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 0C6.80145 0 4.19922 2.60223 4.19922 5.80078C4.19922 8.99933 6.80145 11.6016 10 11.6016C13.1986 11.6016 15.8008 8.99933 15.8008 5.80078C15.8008 2.60223 13.1986 0 10 0Z" fill="currentColor"/>
+                    <path d="M16.8853 15.5006C15.2971 13.888 13.1918 13 10.957 13H8.37891C6.14419 13 4.0388 13.888 2.45068 15.5006C0.870332 17.1052 0 19.2233 0 21.4648C0 21.8208 0.288578 22.1094 0.644531 22.1094H18.6914C19.0474 22.1094 19.3359 21.8208 19.3359 21.4648C19.3359 19.2233 18.4656 17.1052 16.8853 15.5006Z" fill="currentColor"/>
+                </svg>
+            </a>
+        </nav>
     </footer>
 </div>

@@ -8,24 +8,28 @@ use Livewire\Component;
 
 class Home extends Component
 {
+    public string $location = 'التوصيل إلى المعادي';
+
+    public int $cartCount = 2;
+
     /** @var list<array{label: string, image: string|null}> */
     public array $categories = [
-        ['label' => 'ألعاب أولاد', 'image' => 'category-boys-toys.png'],
-        ['label' => 'ألعاب بنات', 'image' => 'category-girls-toys.jpg'],
-        ['label' => 'هدايا نسائية', 'image' => null],
-        ['label' => 'هدايا رجالية', 'image' => 'category-mens-gifts.jpg'],
-        ['label' => 'زهور طبيعية', 'image' => null],
-        ['label' => 'فخار ومجات', 'image' => null],
-        ['label' => 'إلكترونيات', 'image' => null],
-        ['label' => 'عطور', 'image' => 'category-perfumes.jpg'],
-        ['label' => 'دباديب', 'image' => null],
+        ['label' => 'ألعاب أولاد', 'image' => 'cat-boys-toys.png'],
+        ['label' => 'ألعاب بنات', 'image' => 'cat-girls-toys.png'],
+        ['label' => 'هدايا نسائية', 'image' => 'cat-womens-gifts.png'],
+        ['label' => 'هدايا رجالية', 'image' => 'cat-mens-gifts.png'],
+        ['label' => 'زهور طبيعية', 'image' => 'cat-flowers.png'],
+        ['label' => 'فخار ومجات', 'image' => 'cat-pottery-mugs.png'],
+        ['label' => 'إلكترونيات', 'image' => 'cat-electronics.png'],
+        ['label' => 'عطور', 'image' => 'cat-perfumes.png'],
+        ['label' => 'دباديب', 'image' => 'cat-teddy.png'],
     ];
 
-    /** @var list<array{label: string}> */
+    /** @var list<array{label: string, image: string}> */
     public array $services = [
-        ['label' => 'عمل تيشرت مخصص'],
-        ['label' => 'عمل مج مخصص'],
-        ['label' => 'عمل ستيكر مخصص'],
+        ['label' => 'عمل تيشرت مخصص', 'image' => 'service-tshirt.png'],
+        ['label' => 'عمل مج مخصص', 'image' => 'service-mug.png'],
+        ['label' => 'عمل ستيكر مخصص', 'image' => 'service-sticker.png'],
     ];
 
     #[Layout('components.layouts.app')]
