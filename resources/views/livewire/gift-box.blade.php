@@ -55,7 +55,7 @@
                 <a
                     href="{{ route('home') }}"
                     wire:navigate
-                    class="mt-6 rounded-[20px] bg-[#D81D35] px-10 py-3 text-base font-bold text-white shadow-[0px_4px_7.5px_0px_rgba(0,0,0,0.25)]"
+                    class="mt-6 rounded-[20px] bg-[#D81D35] px-14 py-3 text-base font-bold text-white shadow-[0px_4px_7.5px_0px_rgba(0,0,0,0.25)]"
                 >
                     ابدأ التسوق
                 </a>

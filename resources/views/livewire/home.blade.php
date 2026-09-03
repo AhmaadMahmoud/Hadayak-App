@@ -9,7 +9,7 @@
 
     {{-- Top bar + search (respects safe area) --}}
     <header
-        class="shrink-0 px-6 pt-3"
+        class="shrink-0 bg-white px-6 pt-3 pb-4"
         style="padding-top: max(0.75rem, env(safe-area-inset-top));"
     >
         {{-- Delivery location + messages --}}
@@ -46,7 +46,7 @@
     {{-- Scrollable body --}}
     <main class="flex-1 overflow-y-auto px-6 pb-4">
         {{-- Hero banner (Figma crop: 145.85% height, -13.91% top) --}}
-        <div class="relative mt-4 aspect-[354/175] w-full overflow-hidden rounded-[10px]">
+        <div class="relative aspect-[354/175] w-full overflow-hidden rounded-[10px]">
             <img
                 src="{{ asset('images/home/hero-banner.jpg') }}"
                 alt=""
