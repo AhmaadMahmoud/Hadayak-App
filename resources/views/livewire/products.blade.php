@@ -75,6 +75,9 @@
         </div>
     </main>
 
+    {{-- Toast --}}
+    <x-toast />
+
     {{-- Bottom navigation --}}
     <x-bottom-nav :cart-count="$cartCount" />
 </div>

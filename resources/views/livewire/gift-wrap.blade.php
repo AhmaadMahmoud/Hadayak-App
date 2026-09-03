@@ -42,15 +42,24 @@
 
     {{-- Scrollable body --}}
     <main class="flex-1 overflow-y-auto px-5 pb-4 pt-3">
-        {{-- Preview banner --}}
+        {{-- Preview banner: بيعرض التغليف المختار --}}
         <div class="relative aspect-[356/164] w-full overflow-hidden rounded-[10px] bg-[#FBF3E3]">
-            <img
-                src="{{ asset('images/wrap/preview.webp') }}"
-                alt=""
-                draggable="false"
-                class="absolute inset-0 size-full object-cover"
-                onerror="this.remove()"
-            >
+            @if ($selected !== null && ($options[$selected]['image'] ?? null))
+                <img
+                    src="{{ $options[$selected]['image'] }}"
+                    alt="{{ $options[$selected]['name'] }}"
+                    draggable="false"
+                    class="absolute inset-0 size-full object-contain p-3"
+                >
+            @else
+                <img
+                    src="{{ asset('images/wrap/preview.webp') }}"
+                    alt=""
+                    draggable="false"
+                    class="absolute inset-0 size-full object-cover"
+                    onerror="this.remove()"
+                >
+            @endif
         </div>
 
         {{-- Wrap options --}}

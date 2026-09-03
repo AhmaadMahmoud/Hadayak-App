@@ -65,6 +65,8 @@ class ProductDetail extends Component
         if ($this->productId) {
             Cart::add($this->productId, $this->name, (float) $this->price, $this->image);
             $this->cartCount = Cart::count();
+
+            $this->dispatch('toast', title: 'اتضاف للبوكس 🎁', detail: $this->name);
         }
     }
 
@@ -76,6 +78,8 @@ class ProductDetail extends Component
             $p = $data['product'];
             Cart::add($p['id'], $p['name'], (float) $p['price'], $p['image'] ?? ($p['images'][0] ?? null));
             $this->cartCount = Cart::count();
+
+            $this->dispatch('toast', title: 'اتضاف للبوكس 🎁', detail: $p['name']);
         }
     }
 

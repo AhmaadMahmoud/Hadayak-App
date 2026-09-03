@@ -127,5 +127,8 @@
     </main>
 
     {{-- Bottom navigation --}}
+    {{-- Toast --}}
+    <x-toast />
+
     <x-bottom-nav :cart-count="$cartCount" />
 </div>

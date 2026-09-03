@@ -58,6 +58,8 @@ class Products extends Component
         if ($product) {
             Cart::add($product['id'], $product['name'], (float) $product['price'], $product['image']);
             $this->cartCount = Cart::count();
+
+            $this->dispatch('toast', title: 'اتضاف للبوكس 🎁', detail: $product['name']);
         }
     }
 
