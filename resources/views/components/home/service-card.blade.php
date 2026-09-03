@@ -4,7 +4,7 @@
 >
     @if ($image ?? null)
         <img
-            src="{{ asset('images/home/'.$image) }}"
+            src="{{ $image }}"
             alt=""
             draggable="false"
             class="absolute inset-0 size-full object-cover"

@@ -12,7 +12,8 @@ class Intro extends Component
     #[Title('هداياك')]
     public function mount(): void
     {
-        $this->js('setTimeout(() => window.location.replace("/login"), 2000)');
+        $destination = session('token') ? '/home' : '/login';
+        $this->js("setTimeout(() => window.location.replace('{$destination}'), 2000)");
     }
 
     public function render()

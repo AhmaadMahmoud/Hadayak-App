@@ -2,25 +2,64 @@
 
 namespace App\Livewire;
 
+use App\Services\Api;
+use App\Services\Cart;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Products extends Component
 {
-    public string $heading = 'ساعات ذكية';
+    #[Url(as: 'category_id')]
+    public ?int $categoryId = null;
 
-    public int $cartCount = 2;
+    #[Url(as: 'name')]
+    public ?string $categoryName = null;
 
-    /** @var list<array{name: string, price: int, image: string|null}> */
-    public array $products = [
-        ['name' => 'ساعة سمارت', 'price' => 1920, 'image' => null],
-        ['name' => 'ساعة سمارت', 'price' => 1920, 'image' => null],
-        ['name' => 'ساعة سمارت', 'price' => 1920, 'image' => null],
-        ['name' => 'ساعة سمارت', 'price' => 1920, 'image' => null],
-        ['name' => 'ساعة سمارت', 'price' => 1920, 'image' => null],
-        ['name' => 'ساعة سمارت', 'price' => 1920, 'image' => null],
-    ];
+    public string $heading = 'المنتجات';
+
+    public int $cartCount = 0;
+
+    /** @var list<array{id: int|null, name: string, price: float|int, image: string|null}> */
+    public array $products = [];
+
+    public function mount(): void
+    {
+        $this->cartCount = Cart::count();
+        $this->heading = $this->categoryName ?: 'المنتجات';
+
+        $data = Api::get('/products', array_filter(['category_id' => $this->categoryId]));
+
+        if ($data) {
+            $this->products = collect($data['products'] ?? [])->map(fn ($p) => [
+                'id' => $p['id'],
+                'name' => $p['name'],
+                'price' => $p['price'],
+                'image' => $p['image'],
+            ])->all();
+
+            return;
+        }
+
+        // fallback محلي
+        $this->products = array_fill(0, 6, [
+            'id' => null,
+            'name' => 'ساعة سمارت',
+            'price' => 1920,
+            'image' => asset('images/products/watch.png'),
+        ]);
+    }
+
+    public function addToCart(int $productId): void
+    {
+        $product = collect($this->products)->firstWhere('id', $productId);
+
+        if ($product) {
+            Cart::add($product['id'], $product['name'], (float) $product['price'], $product['image']);
+            $this->cartCount = Cart::count();
+        }
+    }
 
     #[Layout('components.layouts.app')]
     #[Title('المنتجات')]

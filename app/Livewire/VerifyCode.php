@@ -7,18 +7,22 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class Login extends Component
+class VerifyCode extends Component
 {
-    public string $login = '';
-
-    public string $password = '';
+    public string $code = '';
 
     public ?string $error = null;
+
+    public ?string $notice = null;
 
     public function mount()
     {
         if (session('token')) {
             return $this->redirect(route('home'), navigate: true);
+        }
+
+        if (! session('pending_phone')) {
+            return $this->redirect(route('signup'), navigate: true);
         }
     }
 
@@ -27,16 +31,13 @@ class Login extends Component
         $this->error = null;
 
         $this->validate(
-            ['login' => 'required', 'password' => 'required'],
-            [
-                'login.required' => 'اكتب الإيميل أو رقم الموبايل',
-                'password.required' => 'اكتب كلمة السر',
-            ],
+            ['code' => 'required'],
+            ['code.required' => 'اكتب الكود اللي وصلك'],
         );
 
-        $response = Api::post('/auth/login', [
-            'login' => $this->login,
-            'password' => $this->password,
+        $response = Api::post('/auth/verify-otp', [
+            'phone' => session('pending_phone'),
+            'code' => $this->code,
         ]);
 
         if (! $response) {
@@ -46,11 +47,12 @@ class Login extends Component
         }
 
         if (! isset($response['token'])) {
-            $this->error = $response['message'] ?? 'بيانات الدخول غير صحيحة';
+            $this->error = 'الكود غير صحيح أو انتهت صلاحيته';
 
             return;
         }
 
+        session()->forget('pending_phone');
         session([
             'token' => $response['token'],
             'user' => $response['user'],
@@ -59,10 +61,17 @@ class Login extends Component
         return $this->redirect(route('home'), navigate: true);
     }
 
+    public function resend(): void
+    {
+        $this->error = null;
+        Api::post('/auth/resend-otp', ['phone' => session('pending_phone')]);
+        $this->notice = 'اتبعت كود جديد';
+    }
+
     #[Layout('components.layouts.app')]
-    #[Title('تسجيل الدخول')]
+    #[Title('كود التحقق')]
     public function render()
     {
-        return view('livewire.login');
+        return view('livewire.verify-code');
     }
 }

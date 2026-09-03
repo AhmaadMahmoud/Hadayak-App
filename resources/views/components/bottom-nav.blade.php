@@ -31,7 +31,7 @@
         </a>
 
         {{-- Profile --}}
-        <a href="#" class="flex items-center justify-center p-2" aria-label="حسابي" @if ($active === 'profile') aria-current="page" @endif>
+        <a href="{{ route('profile') }}" wire:navigate class="flex items-center justify-center p-2" aria-label="حسابي" @if ($active === 'profile') aria-current="page" @endif>
             <svg class="h-6 w-[22px]" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M10 0C6.80145 0 4.19922 2.60223 4.19922 5.80078C4.19922 8.99933 6.80145 11.6016 10 11.6016C13.1986 11.6016 15.8008 8.99933 15.8008 5.80078C15.8008 2.60223 13.1986 0 10 0Z" fill="currentColor"/>
                 <path d="M16.8853 15.5006C15.2971 13.888 13.1918 13 10.957 13H8.37891C6.14419 13 4.0388 13.888 2.45068 15.5006C0.870332 17.1052 0 19.2233 0 21.4648C0 21.8208 0.288578 22.1094 0.644531 22.1094H18.6914C19.0474 22.1094 19.3359 21.8208 19.3359 21.4648C19.3359 19.2233 18.4656 17.1052 16.8853 15.5006Z" fill="currentColor"/>

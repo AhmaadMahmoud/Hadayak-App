@@ -1,10 +1,11 @@
-<button
-    type="button"
+<a
+    href="{{ $href }}"
+    wire:navigate
     class="relative block aspect-[115/85] w-full overflow-hidden rounded-[10px] bg-[#FCE9EB]"
 >
     @if ($image)
         <img
-            src="{{ asset('images/home/'.$image) }}"
+            src="{{ $image }}"
             alt=""
             draggable="false"
             class="absolute inset-0 size-full object-cover"
@@ -15,4 +16,4 @@
     >
         {{ $label }}
     </span>
-</button>
+</a>

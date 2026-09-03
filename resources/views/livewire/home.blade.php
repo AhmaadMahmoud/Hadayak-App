@@ -1,5 +1,6 @@
 <div
-    class="flex min-h-dvh flex-col bg-white font-sans text-[#060606]"
+    class="flex h-dvh flex-col bg-white font-sans text-[#060606]"
+    style="height: 100dvh; overflow: hidden;"
     dir="rtl"
 >
     @push('head')
@@ -62,6 +63,7 @@
                     <x-home.category-card
                         :label="$category['label']"
                         :image="$category['image']"
+                        :href="route('products', array_filter(['category_id' => $category['id'] ?? null, 'name' => $category['label']]))"
                     />
                 @endforeach
             </div>

@@ -11,6 +11,7 @@ class CategoryCard extends Component
     public function __construct(
         public string $label,
         public ?string $image = null,
+        public string $href = '#',
     ) {}
 
     public function render(): View|Closure|string

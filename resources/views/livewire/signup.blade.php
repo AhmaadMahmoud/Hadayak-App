@@ -36,20 +36,30 @@
                 class="pointer-events-none h-auto w-[clamp(4.5rem,23vw,7rem)] select-none"
             >
 
+            {{-- Screen title --}}
+            <h1 class="mt-6 font-cairo text-xl font-bold text-white">Sign up</h1>
+
             {{-- Credentials + primary action --}}
-            <form wire:submit="submit" class="mt-10 flex w-full flex-col gap-3 font-cairo">
+            <form wire:submit="submit" class="mt-6 flex w-full flex-col gap-3 font-cairo">
                 <input
                     type="text"
-                    wire:model="login"
-                    placeholder="email or number"
-                    autocomplete="username"
+                    wire:model="name"
+                    placeholder="Name"
+                    autocomplete="name"
+                    class="w-full rounded-full bg-white px-6 py-3.5 text-xl text-zinc-700 placeholder:text-[#C1C1C1] focus:outline-none"
+                >
+                <input
+                    type="tel"
+                    wire:model="phone"
+                    placeholder="phone number"
+                    autocomplete="tel"
                     class="w-full rounded-full bg-white px-6 py-3.5 text-xl text-zinc-700 placeholder:text-[#C1C1C1] focus:outline-none"
                 >
                 <input
                     type="password"
                     wire:model="password"
                     placeholder="password"
-                    autocomplete="current-password"
+                    autocomplete="new-password"
                     class="w-full rounded-full bg-white px-6 py-3.5 text-xl text-zinc-700 placeholder:text-[#C1C1C1] focus:outline-none"
                 >
 
@@ -64,7 +74,7 @@
                     wire:loading.attr="disabled"
                     class="block w-full rounded-full bg-[#F1BE18] px-6 py-3.5 text-center text-xl font-bold text-[#D31D38] disabled:opacity-60"
                 >
-                    <span wire:loading.remove>Login</span>
+                    <span wire:loading.remove>Signup</span>
                     <span wire:loading>...</span>
                 </button>
             </form>
@@ -80,12 +90,7 @@
                     draggable="false"
                     class="size-8 shrink-0 select-none"
                 >
-                <span class="text-lg font-bold text-[#518EF8]">Login</span>
-            </a>
-
-            {{-- Signup link --}}
-            <a href="{{ route('signup') }}" wire:navigate class="mt-6 font-cairo text-sm font-bold text-white/90">
-                معندكش حساب؟ سجّل من هنا
+                <span class="text-lg font-bold text-[#518EF8]">Signup</span>
             </a>
         </div>
     </div>

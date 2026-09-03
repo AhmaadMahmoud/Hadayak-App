@@ -9,7 +9,7 @@
 
     {{-- Top bar --}}
     <header
-        class="shrink-0 px-6 pt-3"
+        class="shrink-0 px-5 pt-3"
         style="padding-top: max(0.75rem, env(safe-area-inset-top));"
     >
         <div class="flex items-center justify-between">
@@ -36,45 +36,60 @@
             </a>
         </div>
 
-        <h1 class="mt-4 text-right text-lg font-bold text-[#D41D38]">{{ $heading }}</h1>
+        <h1 class="mt-3 text-right text-lg font-bold text-[#D41D38]">{{ $heading }}</h1>
+        <p class="text-right text-lg font-bold text-black">{{ $price }} جنيه</p>
     </header>
 
-    {{-- Product grid --}}
-    <main class="flex-1 overflow-y-auto px-6 pb-4 pt-2">
-        @if (empty($products))
-            {{-- Empty state --}}
-            <div class="flex flex-col items-center justify-center pt-16 text-center">
-                <span class="flex size-20 items-center justify-center rounded-full bg-[#FFF0EE] text-[#D81D35]">
-                    <svg class="size-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <circle cx="9" cy="9" r="2"/>
-                        <path d="m21 15-3.5-3.5L6 23"/>
-                    </svg>
-                </span>
-                <p class="mt-4 text-base font-bold text-[#281715]">مفيش منتجات في القسم دا لسه</p>
-                <p class="mt-1 text-sm text-[#5C403C]">قريب هنملاه هدايا حلوة 🎁</p>
-                <a
-                    href="{{ route('home') }}"
-                    wire:navigate
-                    class="mt-6 rounded-[20px] bg-[#D81D35] px-10 py-3 text-base font-bold text-white shadow-[0px_4px_7.5px_0px_rgba(0,0,0,0.25)]"
-                >
-                    ارجع للأقسام
-                </a>
-            </div>
-        @endif
+    {{-- Scrollable body --}}
+    <main class="flex-1 overflow-y-auto px-5 pb-4 pt-3">
+        {{-- Preview banner --}}
+        <div class="relative aspect-[356/164] w-full overflow-hidden rounded-[10px] bg-[#FBF3E3]">
+            <img
+                src="{{ asset('images/wrap/preview.webp') }}"
+                alt=""
+                draggable="false"
+                class="absolute inset-0 size-full object-cover"
+                onerror="this.remove()"
+            >
+        </div>
 
-        <div class="grid grid-cols-2 gap-x-2 gap-y-5">
-            @foreach ($products as $product)
-                <x-product-card
-                    :id="$product['id'] ?? null"
-                    :name="$product['name']"
-                    :price="$product['price']"
-                    :image="$product['image']"
-                />
+        {{-- Wrap options --}}
+        <div class="mt-4 grid grid-cols-2 gap-x-2.5 gap-y-3.5">
+            @foreach ($options as $index => $option)
+                <button
+                    type="button"
+                    wire:click="select({{ $index }})"
+                    @class([
+                        'relative aspect-[173/177] w-full overflow-hidden rounded-[10px] bg-[#D9D9D9] transition',
+                        'ring-[3px] ring-[#D81D35] ring-offset-2' => $selected === $index,
+                    ])
+                    aria-label="{{ $option['name'] }}"
+                    aria-pressed="{{ $selected === $index ? 'true' : 'false' }}"
+                >
+                    @if ($option['image'])
+                        <img
+                            src="{{ $option['image'] }}"
+                            alt=""
+                            draggable="false"
+                            class="absolute inset-0 size-full object-cover"
+                        >
+                    @endif
+                </button>
             @endforeach
         </div>
     </main>
 
+    {{-- Next CTA --}}
+    <div class="shrink-0 px-5 pb-3 pt-2 shadow-[0px_-5px_9.2px_0px_rgba(0,0,0,0.10)]">
+        <a
+            href="{{ route('gift-card') }}"
+            wire:navigate
+            class="flex h-[61px] w-full items-center justify-center rounded-[20px] bg-[#D81D35] text-lg font-bold text-white shadow-[0px_4px_7.5px_0px_rgba(0,0,0,0.25)] transition active:scale-[0.99]"
+        >
+            اللي بعده
+        </a>
+    </div>
+
     {{-- Bottom navigation --}}
-    <x-bottom-nav :cart-count="$cartCount" />
+    <x-bottom-nav active="cart" :cart-count="$cartCount" />
 </div>
